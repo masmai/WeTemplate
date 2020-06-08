@@ -98,7 +98,7 @@ function HomeTabs() {
               : 'ios-list';
             }
 
-       return <Ionicons name={iconName} size={size} color={color}     />;
+       return <Ionicons name={iconName} size={size} color={color}/>;
          },
       })}
 
