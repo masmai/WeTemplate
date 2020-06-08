@@ -107,7 +107,7 @@ function HomeTabs() {
         inactiveTintColor: 'gray',
 
       }}>
-      <Tab.Screen name="Home" component={HomeStackScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
 
