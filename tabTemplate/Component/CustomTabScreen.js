@@ -70,7 +70,7 @@ export default class CustomTabScreen extends React.Component {
                         case 'third':
                             return <View><Text>third</Text></View>;
                         case 'fourth':
-                            return <View></View>;
+                            return <View> </View>;
                         default:
                             return null;
                     }
