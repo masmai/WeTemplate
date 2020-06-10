@@ -19,6 +19,7 @@ import {
 import { TabView, SceneMap } from 'react-native-tab-view';
 import Animated from 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Explore from '../Page/Explore'
 export default class CustomTabScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -68,7 +69,7 @@ export default class CustomTabScreen extends React.Component {
                         case 'second':
                             return <View><Text>second</Text></View>;
                         case 'third':
-                            return <View><Text>third</Text></View>;
+                            return <Explore/>;//<View><Text>third</Text></View>
                         case 'fourth':
                             return <View> </View>;
                         default:
