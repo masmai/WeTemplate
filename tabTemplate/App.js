@@ -3,7 +3,7 @@ import { Button, Text, View,StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen, SettingsScreen } from './Page'
+import { HomeScreen, SettingsScreen ,ProfileScreen} from './Page'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 function DetailsScreen() {
   return (
@@ -109,6 +109,7 @@ function HomeTabs() {
       }}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
 
 
