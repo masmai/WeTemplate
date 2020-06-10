@@ -90,12 +90,16 @@ function HomeTabs() {
            let iconName;
            if (route.name === 'Home') {
               iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
+              ? 'ios-home'//'ios-information-circle'
+              : 'ios-home'//'ios-information-circle-outline';
             } else if (route.name === 'Settings') {
               iconName = focused
               ? 'ios-list-box'
               : 'ios-list';
+            }else if (route.name === 'Profile') {
+              iconName = focused
+              ? 'ios-person'
+              : 'ios-person';
             }
 
        return <Ionicons name={iconName} size={size} color={color}/>;

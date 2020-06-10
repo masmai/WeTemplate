@@ -65,11 +65,11 @@ export default class CustomTabScreen extends React.Component {
                 ({ route }) => {
                     switch (route.key) {
                         case 'first':
-                            return <View><Text>first</Text></View>;
+                            return <Explore/>;//<View><Text>first</Text></View>
                         case 'second':
                             return <View><Text>second</Text></View>;
                         case 'third':
-                            return <Explore/>;//<View><Text>third</Text></View>
+                            return <View><Text>third</Text></View>;//<Explore/>
                         case 'fourth':
                             return <View> </View>;
                         default:
@@ -204,15 +204,15 @@ const styles = StyleSheet.create({
     },
     tabBar: {
         flexDirection: 'row',
-        //paddingTop: 50,
+        paddingTop: 20,
         borderColor: "transparent"
     },
     tabItem: {
         flex: 1,
         alignItems: 'center',
         //padding: 2,
-        marginTop: 10,
-        marginBottom: 10,
+        marginTop: 0,
+        marginBottom: 0,
         fontSize: 12
 
     }
