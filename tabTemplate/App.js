@@ -1,19 +1,11 @@
 import * as React from 'react';
-import { Button, Text, View,StyleSheet } from 'react-native';
+import { Button, View,StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen, SettingsScreen ,ProfileScreen} from './Page'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-function DetailsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Details!</Text>
-    </View>
-  );
-}
-
-
+import { DetailsScreen } from './Page/DetailsScreen';
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
   return (

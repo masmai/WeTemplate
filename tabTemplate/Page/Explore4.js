@@ -16,7 +16,7 @@ import { Category, Card,BigCard } from '../Component/'
 
 const { height, width } = Dimensions.get('window')
 
-class Explore extends Component {
+class Explore4 extends Component {
 
     componentDidMount() {
         // this.startHeaderHeight = 80
@@ -77,7 +77,7 @@ class Explore extends Component {
         </View>;
     }
 }
-export {Explore };
+export {Explore4} ;
 
 const styles = StyleSheet.create({
     container: {

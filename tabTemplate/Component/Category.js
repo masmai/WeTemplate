@@ -22,7 +22,7 @@ class Category extends Component {
         );
     }
 }
-export default Category;
+export  {Category};
 
 const styles = StyleSheet.create({
     container: {
