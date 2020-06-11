@@ -12,7 +12,8 @@ import {
     Dimensions
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons'
-import { Category, Card,BigCard } from '../Component/'
+import { Category, Card, BigCard } from '../Component/'
+import { Dashboard } from "./Dashboard";
 
 const { height, width } = Dimensions.get('window')
 
@@ -33,8 +34,8 @@ class Explore2 extends Component {
                 </View>
                 <ScrollView scrollEventThrottle={16}>
                     <View style={{ flex: 1, backgroundColor: 'white', paddingTop: 20 }}>
-                        {this.renderCategorys()}
-                        {this.renderCards()}
+                        <Dashboard></Dashboard>
+                        
 
                     </View>
                 </ScrollView>
@@ -43,11 +44,11 @@ class Explore2 extends Component {
         </SafeAreaView>);
     }
 
-    
 
 
 
-    
+
+
 
     renderCategorys() {
         return <View>
@@ -69,15 +70,15 @@ class Explore2 extends Component {
     renderCards() {
         return <View>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                <Card imageUri={require('../assets/home.jpg')} name="Home" width={width - (width/3)} height={200}></Card>
-                <Card imageUri={require('../assets/home.jpg')} name="Home" width={width - (width/3)} height={200}></Card>
-                <Card imageUri={require('../assets/home.jpg')} name="Home" width={width - (width/3)} height={200}></Card>
+                <Card imageUri={require('../assets/home.jpg')} name="Home" width={width - (width / 3)} height={200}></Card>
+                <Card imageUri={require('../assets/home.jpg')} name="Home" width={width - (width / 3)} height={200}></Card>
+                <Card imageUri={require('../assets/home.jpg')} name="Home" width={width - (width / 3)} height={200}></Card>
             </ScrollView>
             <BigCard imageUri={require('../assets/home.jpg')} name="Home" width={width - 40} height={200}></BigCard>
         </View>;
     }
 }
-export {Explore2} ;
+export { Explore2 };
 
 const styles = StyleSheet.create({
     container: {
