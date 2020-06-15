@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen, SettingsScreen, ProfileScreen } from './Page'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { DetailsScreen } from './Page/DetailsScreen';
-import SplashScreen from './SplashScreen';
+import SplashScreen from './Component/SplashScreen';
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
   return (
