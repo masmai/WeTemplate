@@ -1,11 +1,12 @@
-import * as React from 'react';
-import { Button, View,StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { Button, View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen, SettingsScreen ,ProfileScreen} from './Page'
+import { HomeScreen, SettingsScreen, ProfileScreen } from './Page'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { DetailsScreen } from './Page/DetailsScreen';
+import SplashScreen from './SplashScreen';
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
   return (
@@ -77,25 +78,25 @@ const Tab = createBottomTabNavigator();
 function HomeTabs() {
   return (
     <Tab.Navigator
-         screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-           let iconName;
-           if (route.name === 'Home') {
-              iconName = focused
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Home') {
+            iconName = focused
               ? 'ios-home'//'ios-information-circle'
               : 'ios-home'//'ios-information-circle-outline';
-            } else if (route.name === 'Settings') {
-              iconName = focused
+          } else if (route.name === 'Settings') {
+            iconName = focused
               ? 'ios-list-box'
               : 'ios-list';
-            }else if (route.name === 'Profile') {
-              iconName = focused
+          } else if (route.name === 'Profile') {
+            iconName = focused
               ? 'ios-person'
               : 'ios-person';
-            }
+          }
 
-       return <Ionicons name={iconName} size={size} color={color}/>;
-         },
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
       })}
 
       tabBarOptions={{
@@ -114,19 +115,26 @@ function HomeTabs() {
 }
 const Stack = createStackNavigator();
 export default function App() {
+  const [loading, setLoading] = useState(true);
+  setTimeout(() => {
+    setLoading(false);
+  }, 5000);
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen options={{
+     <Stack.Navigator>
+        {!loading ? 
+        ( <Stack.Screen options={{
           //headerTransparent: true,
           //headerShown:false
           headerBackground: () => (
-            <View  style={[StyleSheet.absoluteFill,{backgroundColor:'#35d0ba'}]} />
+            <View style={[StyleSheet.absoluteFill, { backgroundColor: '#35d0ba' }]} />
           ),
-        }}
-          name="WeApp" component={HomeTabs} />
-        <Stack.Screen name="Details1" component={DetailsScreen} />
-
+        }} name="WeApp" component={HomeTabs} />
+          // <Stack.Screen name="Details1" component={DetailsScreen} /> 
+          )
+          : (<Stack.Screen options={{headerShown:false}} name="SplashScreen" component={SplashScreen} />)
+        }
+        <Stack.Screen name="Details1" component={DetailsScreen} /> 
       </Stack.Navigator>
     </NavigationContainer>
   );
