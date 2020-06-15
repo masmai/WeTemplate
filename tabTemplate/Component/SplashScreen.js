@@ -77,11 +77,11 @@ export default class SplashScreen extends Component {
           this.animation = animation;
         }}
           source={require('../assets/lottiefiles/17750-developer.json')} autoPlay loop
-          style={{flex:2,width:wp(40),height:hp(40),alignSelf:'center',alignItems:'center'}}
+          style={{flex:4,width:wp(40),height:hp(40),alignSelf:'center',alignItems:'center'}}
         />
         <View style={{flex:1, margin: wp(2), justifyContent: 'flex-start', alignItems: 'center' }}>
         {/* <Text style={{fontSize:48,color:'#35d0ba'}}>We can do.</Text> */}
-        <SlideLeftText textData="We can do it." color="#35d0ba"></SlideLeftText>
+        <SlideLeftText textData="We can do." color="#35d0ba"></SlideLeftText>
       </View>
      </View>;
   }
