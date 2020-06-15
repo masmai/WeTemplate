@@ -66,10 +66,10 @@ export default class SplashScreen extends Component {
   }
   render() {
 
-    return <View style={{ flex: 1 ,backgroundColor:'white'}}>
-      <View style={{flex:1, margin: wp(2), justifyContent: 'flex-end', alignItems: 'center' }}>
+    return <View style={{ flex: 1 ,backgroundColor:'#35d0ba'}}>
+      <View style={{flex:1, margin: wp(10), justifyContent: 'flex-end', alignItems: 'center' }}>
         {/* <Text style={{fontSize:72,color:'#35d0ba'}}>Weable</Text> */}
-        <SlideRightText textData="Weable" color="#35d0ba"></SlideRightText>
+        {/* <SlideRightText textData="WeApp" color="white"></SlideRightText> */}
       </View>
       {/* <View style={{ flex:2,justifyContent: 'center', alignItems: 'center', width: wp('40%'), height: wp('40%') ,backgroundColor:'pink'}}>
 </View> */}
@@ -77,11 +77,11 @@ export default class SplashScreen extends Component {
           this.animation = animation;
         }}
           source={require('../assets/lottiefiles/17750-developer.json')} autoPlay loop
-          style={{flex:4,width:wp(40),height:hp(40),alignSelf:'center',alignItems:'center'}}
+          style={{width:wp(20),height:hp(20),alignSelf:'center',alignItems:'center'}}
         />
         <View style={{flex:1, margin: wp(2), justifyContent: 'flex-start', alignItems: 'center' }}>
         {/* <Text style={{fontSize:48,color:'#35d0ba'}}>We can do.</Text> */}
-        <SlideLeftText textData="We can do." color="#35d0ba"></SlideLeftText>
+        {/* <SlideLeftText textData="We can do." color="white"></SlideLeftText> */}
       </View>
      </View>;
   }

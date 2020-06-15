@@ -118,7 +118,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   setTimeout(() => {
     setLoading(false);
-  }, 5000);
+  }, 15000);
   return (
     <NavigationContainer>
      <Stack.Navigator>
