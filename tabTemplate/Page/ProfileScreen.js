@@ -20,26 +20,44 @@ function ProfileScreen({ navigation }) {
                 </View>
             </View>
             <View style={styles.card}>
-                <View style={{ flexDirection: 'row' }}>
-                    <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#70DBD1', alignItems: 'center' }}>
-                        <Ionicons name={'ios-images'} size={30} />
+                <View style={{ flexDirection: 'row', alignSelf: 'center', marginVertical: 5 }}>
+                    <View style={{ flexDirection: 'column', width: ('30%'), alignItems: 'center' }}>
+                        <View style={{ height: 50, width: 50, borderRadius: 25, backgroundColor: '#70DBD1', alignItems: 'center', justifyContent: 'center' }}>
+                            <Ionicons name={'ios-images'} size={30} />
+                        </View>
+                        <Text style={{ textAlign: 'center' }}>Card</Text>
                     </View>
-                    <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#77BFC7', alignItems: 'center' }}>
-                    <Ionicons name={'ios-images'} size={30} />
+                    <View style={{ flexDirection: 'column', width: ('30%'), alignItems: 'center' }}>
+                        <View style={{ height: 50, width: 50, borderRadius: 25, backgroundColor: '#77BFC7', alignItems: 'center', justifyContent: 'center' }}>
+                            <Ionicons name={'ios-images'} size={30} />
+                        </View>
+                        <Text style={{ textAlign: 'center' }}>Statement</Text>
                     </View>
-                    <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#70DBD1', alignItems: 'center' }}>
-                    <Ionicons name={'ios-images'} size={30} />
+                    <View style={{ flexDirection: 'column', width: ('30%'), alignItems: 'center' }}>
+                        <View style={{ height: 50, width: 50, borderRadius: 25, backgroundColor: '#70DBD1', alignItems: 'center', justifyContent: 'center' }}>
+                            <Ionicons name={'ios-images'} size={30} />
+                        </View>
+                        <Text style={{ textAlign: 'center' }}>Loan</Text>
                     </View>
                 </View>
-                <View style={{ flexDirection: 'row' }}>
-                    <View style={{ flex: 1, flexDirection: 'column', backgroundColor: 'red', alignItems: 'center' }}>
-                        <Text >Card</Text>
+                <View style={{ flexDirection: 'row', alignSelf: 'center', marginVertical: 3 }}>
+                    <View style={{ flexDirection: 'column', width: ('30%'), alignItems: 'center' }}>
+                        <View style={{ height: 50, width: 50, borderRadius: 25, backgroundColor: '#70DBD1', alignItems: 'center', justifyContent: 'center' }}>
+                            <Ionicons name={'ios-images'} size={30} />
+                        </View>
+                        <Text style={{ textAlign: 'center' }}>Card</Text>
                     </View>
-                    <View style={{ flex: 1, flexDirection: 'column', backgroundColor: 'blue', alignItems: 'center' }}>
-                        <Text >Statement</Text>
+                    <View style={{ flexDirection: 'column', width: ('30%'), alignItems: 'center' }}>
+                        <View style={{ height: 50, width: 50, borderRadius: 25, backgroundColor: '#77BFC7', alignItems: 'center', justifyContent: 'center' }}>
+                            <Ionicons name={'ios-images'} size={30} />
+                        </View>
+                        <Text style={{ textAlign: 'center' }}>Statement</Text>
                     </View>
-                    <View style={{ flex: 1, flexDirection: 'column', backgroundColor: 'pink', alignItems: 'center' }}>
-                        <Text >Loan</Text>
+                    <View style={{ flexDirection: 'column', width: ('30%'), alignItems: 'center' }}>
+                        <View style={{ height: 50, width: 50, borderRadius: 25, backgroundColor: '#70DBD1', alignItems: 'center', justifyContent: 'center' }}>
+                            <Ionicons name={'ios-images'} size={30} />
+                        </View>
+                        <Text style={{ textAlign: 'center' }}>Loan</Text>
                     </View>
                 </View>
             </View>
@@ -48,10 +66,14 @@ function ProfileScreen({ navigation }) {
             </View>
             <View style={[styles.row, {}]}>
                 <View style={{ width: '50%', height: '45%', flexDirection: 'column' }}>
-                    <Image style={styles.card_small}></Image>
+                    <View style={styles.card_small}>
+                        <Text style={{ textAlign: 'left' }}>368.17</Text>
+                    </View>
                 </View>
                 <View style={{ width: '50%', height: '45%', flexDirection: 'column' }}>
-                    <Image style={styles.card_small}></Image>
+                    <View style={styles.card_small}>
+                        <Text style={{ textAlign: 'left' }}>282.34</Text>
+                    </View>
                 </View>
             </View>
             {/* </ScrollView> */}
