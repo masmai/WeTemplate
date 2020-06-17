@@ -1,25 +1,30 @@
 import React from 'react';
 import {
   StyleSheet, Text,
-  TextInput,  TouchableOpacity, View,
+  TextInput, TouchableOpacity, View,
   Button, ImageEditor,
 } from 'react-native';
 import firebaseSvc from '../FirebaseSvc';
 // import firebase from '@react-native-firebase/app';
 // import { auth, initializeApp, storage } from 'firebase';
 import uuid from 'uuid';
+import { widthPercentageToDP, heightPercentageToDP } from 'react-native-responsive-screen';
 
 class Login extends React.Component {
   static navigationOptions = {
     title: 'Scv Chatter',
   };
-
+  constructor(props){
+    super(props);
+    props.navigation.setOptions({ title: "Messenger" })
+  }
+ 
   state = {
     name: 'Alex B',
     email: 'test3@gmail.com',
     password: 'test123',
     avatar: '',
-    roomName:'Messages'
+    roomName: 'Messages'
   };
 
   // using Fire.js
@@ -30,7 +35,7 @@ class Login extends React.Component {
       email: this.state.email,
       password: this.state.password,
       avatar: this.state.avatar,
-      roomName:this.state.roomName
+      roomName: this.state.roomName
     };
 
     const response = firebaseSvc.login(
@@ -46,7 +51,7 @@ class Login extends React.Component {
       name: this.state.name,
       email: this.state.email,
       avatar: this.state.avatar,
-      roomName:this.state.roomName
+      roomName: this.state.roomName
     });
   };
   loginFailed = () => {
@@ -75,28 +80,38 @@ class Login extends React.Component {
           onChangeText={this.onChangeTextPassword}
           value={this.state.password}
         />
+        <Text style={styles.title}>RoomID:</Text>
         <TextInput
           style={styles.nameInput}
           onChangeText={this.onChangeRoom}
           value={this.state.roomName}
         />
-        <Button
-          title="Login 2"
-          style={styles.buttonText}
-          onPress={this.onPressLogin}
-        />
+        <View style={{ flex:1, flexDirection: 'row', marginTop: heightPercentageToDP(10) }}>
+          <View style={{ flex: 1 }}>
+            <TouchableOpacity
+              title="Login 2"
+              style={styles.primaryButtonText}
+              onPress={this.onPressLogin}
+            ><Text style={{ textAlign: 'center', justifyContent: 'center' }}>Login</Text></TouchableOpacity>
+          </View>
+          <View style={{ flex: 1 }}>
+            <TouchableOpacity
+              title="Go to create new account"
+              style={styles.buttonText}
+              onPress={() => this.props.navigation.navigate("CreateAccount")}
+            ><Text style={{ textAlign: 'center', justifyContent: 'center' }}>SignUp</Text>
+            </TouchableOpacity>
+          </View>
 
-        <Button
-          title="Go to create new account"
-          style={styles.buttonText}
-          onPress={() => this.props.navigation.navigate("CreateAccount")}
-        />
+
+
+        </View>
       </View>
     );
   }
 }
 
-const offset = 16;
+const offset = heightPercentageToDP(2);
 const styles = StyleSheet.create({
   title: {
     marginTop: offset,
@@ -104,17 +119,37 @@ const styles = StyleSheet.create({
     fontSize: offset,
   },
   nameInput: {
-    height: offset * 2,
-    margin: offset,
+    //height: offset * 2,
+    margin: heightPercentageToDP(1),
     paddingHorizontal: offset,
     borderColor: '#111111',
-    borderWidth: 1,
-    fontSize: offset,
+    borderBottomWidth: 0.4,
+    //fontSize: offset,
+  },
+  primaryButtonText: {
+    marginHorizontal: offset,
+    fontSize: 42,
+    marginTop: heightPercentageToDP(3),
+    backgroundColor: '#35d0ba',
+    height: heightPercentageToDP(10),
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25
+
   },
   buttonText: {
-    marginLeft: offset,
+    marginHorizontal: offset,
     fontSize: 42,
-  },
+    marginTop: heightPercentageToDP(3),
+    backgroundColor: 'gray',
+    height: heightPercentageToDP(10),
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25
+
+  }
 });
 
 export default Login;
