@@ -1,11 +1,11 @@
 import React from 'react';
 import {
   StyleSheet, Text,
-  TextInput, View,
+  TextInput, View,TouchableOpacity,
   Button, ImageEditor,
 } from 'react-native';
 import firebaseSvc from '../FirebaseSvc';
-
+import { widthPercentageToDP, heightPercentageToDP } from 'react-native-responsive-screen';
 class CreateAccount extends React.Component {
   static navigationOptions = {
     title: 'Scv Chatter',
@@ -61,18 +61,27 @@ class CreateAccount extends React.Component {
           onChangeText={this.onChangeTextName}
           value={this.state.name}
         />
-        <Button
-          title="Create Account"
-          style={styles.buttonText}
-          onPress={this.onPressCreate}
-        />
         
+        <View style={{ flex:1, flexDirection: 'row', marginTop: heightPercentageToDP(10) }}>
+          <View style={{ flex: 1 }}>
+            <TouchableOpacity
+              title="Login 2"
+              style={styles.primaryButtonText}
+              onPress={this.onPressCreate}
+            ><Text style={{ textAlign: 'center', justifyContent: 'center' }}>Create Account</Text>
+            </TouchableOpacity>
+          </View>
+          
+
+
+
+        </View>
       </View>
     );
   }
 }
 
-const offset = 16;
+const offset = heightPercentageToDP(2);
 const styles = StyleSheet.create({
   title: {
     marginTop: offset,
@@ -80,17 +89,37 @@ const styles = StyleSheet.create({
     fontSize: offset,
   },
   nameInput: {
-    height: offset * 2,
-    margin: offset,
+    //height: offset * 2,
+    margin: heightPercentageToDP(1),
     paddingHorizontal: offset,
     borderColor: '#111111',
-    borderWidth: 1,
-    fontSize: offset,
+    borderBottomWidth: 0.4,
+    //fontSize: offset,
+  },
+  primaryButtonText: {
+    marginHorizontal: offset,
+    fontSize: 42,
+    marginTop: heightPercentageToDP(3),
+    backgroundColor: '#35d0ba',
+    height: heightPercentageToDP(10),
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25
+
   },
   buttonText: {
-    marginLeft: offset,
+    marginHorizontal: offset,
     fontSize: 42,
-  },
+    marginTop: heightPercentageToDP(3),
+    backgroundColor: 'gray',
+    height: heightPercentageToDP(10),
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25
+
+  }
 });
 
 export default CreateAccount;
