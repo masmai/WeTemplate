@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "246245073288",
+    "firebase_url": "https://templatechatapp.firebaseio.com",
+    "project_id": "templatechatapp",
+    "storage_bucket": "templatechatapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246245073288:android:6ee3df688eab1e38571a3d",
+        "android_client_info": {
+          "package_name": "com.tabtemplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246245073288-erf369tm8tt5rql5df14cs4husaanvmf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7plkIQxMMHl-rDfDFfFOJcM8J9VCzx2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246245073288-erf369tm8tt5rql5df14cs4husaanvmf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "246245073288-r1ajtqlg0r8grh9gscojif9agpic5dd0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.tabTemplate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

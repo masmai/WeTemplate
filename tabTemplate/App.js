@@ -7,6 +7,9 @@ import { HomeScreen, SettingsScreen, ProfileScreen } from './Page'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { DetailsScreen } from './Page/DetailsScreen';
 import SplashScreen from './Component/SplashScreen';
+import Login from './Component/Login';
+import CreateAccount from './Component/CreateAccount';
+import {Chat} from './Component'
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
   return (
@@ -135,6 +138,9 @@ export default function App() {
           : (<Stack.Screen options={{headerShown:false}} name="SplashScreen" component={SplashScreen} />)
         }
         <Stack.Screen name="Details1" component={DetailsScreen} /> 
+        <Stack.Screen name="Chat" component={Chat} /> 
+        <Stack.Screen name="CreateAccount" component={CreateAccount} /> 
+        <Stack.Screen name="Login" component={Login} /> 
       </Stack.Navigator>
     </NavigationContainer>
   );
