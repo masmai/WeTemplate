@@ -52,22 +52,22 @@ function ProfileScreen({ navigation }) {
                         <Image style={styles.header_img}></Image>
                     </View>
                 </View>
-                <View style={styles.card}>
+                <View style={[styles.card,styles.shadow]}>
                     {menu}
                 </View>
                 <View style={[styles.row, { marginVertical: '2%' }]}>
                     <Text >Balance</Text>
                 </View>
                 <View style={[styles.row]}>
-                    <View style={[styles.card_small, { marginRight: 5 }]}>
+                    <View style={[styles.card_small,styles.shadow ,{ marginRight: 5 }]}>
                         <Text style={{ textAlign: 'left', margin: hp(2) }}>368.17</Text>
                     </View>
-                    <View style={[styles.card_small, { marginLeft: 5 }]}>
+                    <View style={[styles.card_small,styles.shadow, { marginLeft: 5 }]}>
                         <Text style={{ textAlign: 'left', margin: hp(2) }}>282.34</Text>
                     </View>
                 </View>
-                <View style={[styles.row, { marginVertical: '2%' }]}>
-                    <View style={[styles.card_row]}>
+                <View style={[styles.row,{ marginVertical: '2%' }]}>
+                    <View style={[styles.card_row,styles.shadow]}>
                         <Text style={{ textAlign: 'left' }}>47.90%</Text>
                         <Text style={{ textAlign: 'left' }}>Resource</Text>
                     </View>
@@ -99,16 +99,6 @@ const styles = StyleSheet.create({
         marginTop: -80,
         alignSelf: 'center',
         justifyContent: 'center',
-
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-
-        elevation: 5,
     },
     card_small: {
         flex: 1,
@@ -128,6 +118,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
         padding: wp(2)
+
+
     },
     row: {
         flexDirection: 'row',
@@ -152,6 +144,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#70DBD1',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    shadow: {
+        /*---Shadow--- */
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     }
 
 });
