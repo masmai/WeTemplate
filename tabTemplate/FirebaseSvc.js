@@ -199,7 +199,9 @@ class FirebaseSvc {
     firebase.database()
       .ref('/Users/' + uid).update({
         isOnline: true,
-      }).then(() => console.log('Data updated.'));
+      }).then(() => {console.log('Data updated.')
+      firebase.database().ref('Users').push()
+    });
 
   }
 
@@ -211,7 +213,8 @@ class FirebaseSvc {
         isOnline: false,
       }).then(() => {
         console.log('logout succeed');
-        self.ref.off()
+        firebase.database().ref('Users').push();
+        //self.ref.off()
       }
       );
 
