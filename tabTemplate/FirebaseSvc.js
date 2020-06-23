@@ -184,7 +184,7 @@ class FirebaseSvc {
   };
   saveUsers(user, uid) {
     firebase.database()
-      .ref('/Users/' + uuid.v4())
+      .ref('/Users/' + uid)
       .set({
         name: user.name,
         email: user.email,
@@ -193,19 +193,28 @@ class FirebaseSvc {
       })
       .then(() => console.log('Save firebaseUser to Users.'));
   }
-   async updateUsers(uid) {
-     console.log("update users by uid : "+uid)
+  async updateUsers(uid) {
+    console.log("update users by uid : " + uid)
     //query where uid=
-      firebase.database()
-      .ref('/Users/'+uid).update({
+    firebase.database()
+      .ref('/Users/' + uid).update({
         isOnline: true,
       }).then(() => console.log('Data updated.'));
-     
+
   }
 
 
   refOff() {
-    this.ref.off();
+    let self = this;
+    firebase.database()
+      .ref('/Users/' + this.uid).update({
+        isOnline: false,
+      }).then(() => {
+        console.log('logout succeed');
+        self.ref.off()
+      }
+      );
+
   }
 }
 

@@ -15,10 +15,14 @@ const RosterList = ({ route, navigation }) => {
         firebaseSvc.updateUsers(firebaseSvc.uid);
         firebaseSvc.User(user => {
             console.warn(JSON.stringify(user))
-            if(user.uid!==firebaseSvc.uid)
-            setUsers(users => [...users, user])
+            if (user.uid !== firebaseSvc.uid)
+                setUsers(users => [...users, user])
 
         })
+        return function cleanup(){
+            console.warn('unmount')
+            firebaseSvc.refOff();
+        }
 
     }, []);//firebaseSvc.refOff()
 
@@ -28,9 +32,9 @@ const RosterList = ({ route, navigation }) => {
                 users.length > 0 ?
                     users.map((item) => {
                         //alert(typeof item["name"])
-                        return <Text>{item.name}  
+                        return <Text>{item.name}
                             {
-                                item.isOnline ?<Text color='green'> online</Text> :<Text style={{color:'red'}}> offLine</Text>
+                                item.isOnline ? <Text color='green'> online</Text> : <Text style={{ color: 'red' }}> offLine</Text>
                             }
                         </Text>
                     })
