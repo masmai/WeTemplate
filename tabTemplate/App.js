@@ -9,7 +9,8 @@ import { DetailsScreen } from './Page/DetailsScreen';
 import SplashScreen from './Component/SplashScreen';
 import Login from './Component/Login';
 import CreateAccount from './Component/CreateAccount';
-import {Chat} from './Component'
+import { Chat } from './Component'
+import { RosterList } from './Component/Chat/RosterList';
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
   return (
@@ -124,23 +125,24 @@ export default function App() {
   }, 15000);
   return (
     <NavigationContainer>
-     <Stack.Navigator>
-        {!loading ? 
-        ( <Stack.Screen options={{
-          //headerTransparent: true,
-          //headerShown:false
-          headerBackground: () => (
-            <View style={[StyleSheet.absoluteFill, { backgroundColor: '#35d0ba' }]} />
-          ),
-        }} name="WeApp" component={HomeTabs} />
-          // <Stack.Screen name="Details1" component={DetailsScreen} /> 
+      <Stack.Navigator>
+        {!loading ?
+          (<Stack.Screen options={{
+            //headerTransparent: true,
+            //headerShown:false
+            headerBackground: () => (
+              <View style={[StyleSheet.absoluteFill, { backgroundColor: '#35d0ba' }]} />
+            ),
+          }} name="WeApp" component={HomeTabs} />
+            // <Stack.Screen name="Details1" component={DetailsScreen} /> 
           )
-          : (<Stack.Screen options={{headerShown:false}} name="SplashScreen" component={SplashScreen} />)
+          : (<Stack.Screen options={{ headerShown: false }} name="SplashScreen" component={SplashScreen} />)
         }
-        <Stack.Screen name="Details1" component={DetailsScreen} /> 
-        <Stack.Screen name="Chat" component={Chat} /> 
-        <Stack.Screen name="CreateAccount" component={CreateAccount} /> 
-        <Stack.Screen name="Login" component={Login} /> 
+        <Stack.Screen name="Details1" component={DetailsScreen} />
+        <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen name="RosterList" component={RosterList} />
+        <Stack.Screen name="CreateAccount" component={CreateAccount} />
+        <Stack.Screen name="Login" component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );

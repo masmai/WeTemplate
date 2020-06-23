@@ -7,7 +7,7 @@ const Chat = ({ route, navigation }) => {
     const [messages, setMessages] = useState([]);
     const [user, setUser] = useState({});
     //const { name } = route.params;
-    const { name,email ,roomName} = route.params;
+    const { name, email, roomName } = route.params;
     //     setUser(
     //{
     //     name: name,//'fucking'
@@ -19,7 +19,7 @@ const Chat = ({ route, navigation }) => {
     //)
     navigation.setOptions({ title: roomName })
     useEffect(() => {
-        
+
         firebaseSvc.refOn(message =>
             // this.setState(previousState => ({
             //   messages: GiftedChat.append(previousState.messages, message),
@@ -27,11 +27,15 @@ const Chat = ({ route, navigation }) => {
 
             setMessages(messages => [message, ...messages])
         );
+        firebaseSvc.User().then(res => {
+            console.warn("USers : ", JSON.stringify(res))
+        })
 
         // return () => {
         //     firebaseSvc.refOff()
         // }
     }, []);//firebaseSvc.refOff()
+
     return (
         <GiftedChat
             messages={messages}
