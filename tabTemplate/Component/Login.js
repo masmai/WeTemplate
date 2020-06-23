@@ -14,11 +14,11 @@ class Login extends React.Component {
   static navigationOptions = {
     title: 'Scv Chatter',
   };
-  constructor(props){
+  constructor(props) {
     super(props);
     props.navigation.setOptions({ title: "Messenger" })
   }
- 
+
   state = {
     name: 'Alex B',
     email: 'test3@gmail.com',
@@ -47,12 +47,15 @@ class Login extends React.Component {
 
   loginSuccess = () => {
     console.log('login successful, navigate to chat.');
-    this.props.navigation.navigate('Chat', {
-      name: this.state.name,
-      email: this.state.email,
-      avatar: this.state.avatar,
-      roomName: this.state.roomName
-    });
+    // this.props.navigation.navigate('Chat', {
+    //   name: this.state.name,
+    //   email: this.state.email,
+    //   avatar: this.state.avatar,
+    //   roomName: this.state.roomName
+    // });
+    //var uid = firebase.auth().currentUser.uid;
+    
+    this.props.navigation.navigate('RosterList');
   };
   loginFailed = () => {
     console.log('login failed ***');
@@ -86,7 +89,7 @@ class Login extends React.Component {
           onChangeText={this.onChangeRoom}
           value={this.state.roomName}
         />
-        <View style={{ flex:1, flexDirection: 'row', marginTop: heightPercentageToDP(10) }}>
+        <View style={{ flex: 1, flexDirection: 'row', marginTop: heightPercentageToDP(10) }}>
           <View style={{ flex: 1 }}>
             <TouchableOpacity
               title="Login 2"

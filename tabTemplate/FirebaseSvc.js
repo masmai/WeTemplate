@@ -11,7 +11,7 @@ const config = {
   storageBucket: "templatechatapp.appspot.com",
   messagingSenderId: "246245073288"
 }
-var roomName='Messages';
+var roomName = 'Messages';
 class FirebaseSvc {
   constructor() {
     if (!firebase.apps.length) {
@@ -20,13 +20,13 @@ class FirebaseSvc {
       console.log("firebase apps already running...")
     }
   }
- 
-  
-  login = async(user, success_callback, failed_callback) => {
+
+
+  login = async (user, success_callback, failed_callback) => {
     console.log("logging in");
-    roomName=user.roomName!=''?user.roomName:roomName;
+    roomName = user.roomName != '' ? user.roomName : roomName;
     const output = await firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-    .then(success_callback, failed_callback);
+      .then(success_callback, failed_callback);
   }
 
   observeAuth = () =>
@@ -45,21 +45,23 @@ class FirebaseSvc {
   };
 
   createAccount = async (user) => {
+    let self = this;
     firebase.auth()
       .createUserWithEmailAndPassword(user.email, user.password)
-      .then(function() {
+      .then(function () {
         console.log("created user successfully. User email:" + user.email + " name:" + user.name);
         var userf = firebase.auth().currentUser;
-        userf.updateProfile({ displayName: user.name})
-        .then(function() {
-          console.log("Updated displayName successfully. name:" + user.name);
-          alert("User " + user.name + " was created successfully. Please login.");
-        }, function(error) {
-          console.warn("Error update displayName.");
-        });
-      }, function(error) {
-        console.error("got error:" + typeof(error) + " string:" + error.message);
-        alert("Create account failed. Error: "+error.message);
+        userf.updateProfile({ displayName: user.name })
+          .then(function () {
+            console.log("Updated displayName successfully. name:" + user.name);
+            alert("User " + user.name + " was created successfully. Please login.");
+            self.saveUsers(user, userf.uid);
+          }, function (error) {
+            console.warn("Error update displayName.");
+          });
+      }, function (error) {
+        console.error("got error:" + typeof (error) + " string:" + error.message);
+        alert("Create account failed. Error: " + error.message);
       });
   }
 
@@ -73,12 +75,12 @@ class FirebaseSvc {
         .ref('avatar')
         .child(uuid.v4());
       const task = ref.put(blob);
-    
+
       return new Promise((resolve, reject) => {
         task.on(
           'state_changed',
           () => {
-              /* noop but you can track the progress here */
+            /* noop but you can track the progress here */
           },
           reject /* this is where you would put an error callback! */,
           () => resolve(task.snapshot.downloadURL)
@@ -93,38 +95,42 @@ class FirebaseSvc {
     //await this.setState({ avatar: url });
     var userf = firebase.auth().currentUser;
     if (userf != null) {
-      userf.updateProfile({ avatar: url})
-      .then(function() {
-        console.log("Updated avatar successfully. url:" + url);
-        alert("Avatar image is saved successfully.");
-      }, function(error) {
-        console.warn("Error update avatar.");
-        alert("Error update avatar. Error:" + error.message);
-      });
+      userf.updateProfile({ avatar: url })
+        .then(function () {
+          console.log("Updated avatar successfully. url:" + url);
+          alert("Avatar image is saved successfully.");
+        }, function (error) {
+          console.warn("Error update avatar.");
+          alert("Error update avatar. Error:" + error.message);
+        });
     } else {
       console.log("can't update avatar, user is not login.");
       alert("Unable to update avatar. You must login first.");
     }
   }
-     
+
   onLogout = user => {
-    firebase.auth().signOut().then(function() {
+    firebase.auth().signOut().then(function () {
       console.log("Sign-out successful.");
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.log("An error happened when signing out");
     });
   }
-get displayName(){
+  get displayName() {
     return (firebase.auth().currentUser || {}).displayName;
-}
+  }
   get uid() {
-    console.log("user : "+JSON.stringify((firebase.auth().currentUser || {})))
+    console.log("user : " + JSON.stringify((firebase.auth().currentUser || {})))
     return (firebase.auth().currentUser || {}).uid;
   }
 
   get ref() {
-      console.log(" this.state.roomName : "+roomName)
+    console.log(" this.state.roomName : " + roomName)
     return firebase.database().ref(roomName);
+  }
+  User = callback => {
+    //return firebase.database().ref('Users').once('value');
+    return firebase.database().ref('Users').on('child_added', snapshot => callback(this.userParse(snapshot)));
   }
 
   parse = snapshot => {
@@ -142,6 +148,17 @@ get displayName(){
     };
     return message;
   };
+  userParse = snapshot => {
+    const { uid, name, email, isOnline } = snapshot.val();
+
+    const user = {
+      uid,
+      name,
+      email,
+      isOnline
+    };
+    return user;
+  };
 
   refOn = callback => {
     this.ref
@@ -152,7 +169,7 @@ get displayName(){
   get timestamp() {
     return firebase.database.ServerValue.TIMESTAMP;
   }
-  
+
   // send the message to the Backend
   send = messages => {
     for (let i = 0; i < messages.length; i++) {
@@ -165,6 +182,27 @@ get displayName(){
       this.ref.push(message);
     }
   };
+  saveUsers(user, uid) {
+    firebase.database()
+      .ref('/Users/' + uuid.v4())
+      .set({
+        name: user.name,
+        email: user.email,
+        uid: uid,
+        isOnline: false
+      })
+      .then(() => console.log('Save firebaseUser to Users.'));
+  }
+   async updateUsers(uid) {
+     console.log("update users by uid : "+uid)
+    //query where uid=
+      firebase.database()
+      .ref('/Users/'+uid).update({
+        isOnline: true,
+      }).then(() => console.log('Data updated.'));
+     
+  }
+
 
   refOff() {
     this.ref.off();
