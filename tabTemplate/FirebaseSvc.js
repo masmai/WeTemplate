@@ -12,6 +12,7 @@ const config = {
   messagingSenderId: "246245073288"
 }
 var roomName = 'Messages';
+
 class FirebaseSvc {
   constructor() {
     if (!firebase.apps.length) {
@@ -128,10 +129,11 @@ class FirebaseSvc {
     console.log(" this.state.roomName : " + roomName)
     return firebase.database().ref(roomName);
   }
-  User = callback => {
-    //return firebase.database().ref('Users').once('value');
-    return firebase.database().ref('Users').on('child_added', snapshot => callback(this.userParse(snapshot)));
+  get userRef() {
+    console.log(" this.state.roomName : " + roomName)
+    return firebase.database().ref("Users");
   }
+  
 
   parse = snapshot => {
     const { timestamp: numberStamp, text, user } = snapshot.val();
@@ -199,9 +201,10 @@ class FirebaseSvc {
     firebase.database()
       .ref('/Users/' + uid).update({
         isOnline: true,
-      }).then(() => {console.log('Data updated.')
-      firebase.database().ref('Users').push()
-    });
+      }).then(() => {
+        console.log('Data updated.')
+        
+      });
 
   }
 
@@ -213,7 +216,9 @@ class FirebaseSvc {
         isOnline: false,
       }).then(() => {
         console.log('logout succeed');
-        firebase.database().ref('Users').push();
+        // firebase.database().ref('Users').on('value', (snapshot) => {
+        //   console.warn('logout :'+JSON.stringify(snapshot.val()));
+        // })
         //self.ref.off()
       }
       );

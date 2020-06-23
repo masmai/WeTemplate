@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Text, View } from 'react-native';
 import firebaseSvc from '../../FirebaseSvc';
+var rosterList = []
 const RosterList = ({ route, navigation }) => {
 
     const [users, setUsers] = useState([]);
@@ -12,14 +13,34 @@ const RosterList = ({ route, navigation }) => {
         //     setUsers(users => [users, ...users])
         // })
         console.warn('mount')
-        firebaseSvc.updateUsers(firebaseSvc.uid);
-        firebaseSvc.User(user => {
-            console.warn(JSON.stringify(user))
-            if (user.uid !== firebaseSvc.uid)
-                setUsers(users => [...users, user])
+        //firebaseSvc.updateUsers(firebaseSvc.uid);
+        // firebaseSvc.User(user => {
+        //     var filter=rosterList.filter(item=>{item.uid===user.uid});
+        //     if(filter.length>0){
+        //         rosterList.push(user);
+        //     }else{
+        //         rosterList.push(user);
+        //     }
 
+        //     //setTempUsers(tempUsers => [user, ...tempUsers])
+        //     setUsers(users => [user, ...users])
+
+
+
+        // })
+        firebaseSvc.userRef.on('value', (snapshot) => {
+            const users = [];
+            snapshot.forEach((user) => {
+                if(firebaseSvc.uid!=user.toJSON().uid)
+                users.push(user.toJSON())
+            })
+            setUsers(users, users)
         })
-        return function cleanup(){
+
+
+
+
+        return function cleanup() {
             console.warn('unmount')
             firebaseSvc.refOff();
         }
