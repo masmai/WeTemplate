@@ -13,7 +13,7 @@ const RosterList = ({ route, navigation }) => {
         //     setUsers(users => [users, ...users])
         // })
         console.warn('mount')
-        //firebaseSvc.updateUsers(firebaseSvc.uid);
+        firebaseSvc.updateUsers(firebaseSvc.uid);
         // firebaseSvc.User(user => {
         //     var filter=rosterList.filter(item=>{item.uid===user.uid});
         //     if(filter.length>0){
