@@ -32,40 +32,51 @@ function LineChartScreen({ route, navigation }) {
 
 
     // }, []);
-    
-    return (<Chart
-        style={{ height: 200, width: 400 }}
+
+    return (
+    <View style={{flex:1}}>
+        <Text >แนวโน้ม</Text>
+        <Chart
+        style={{ height: 400, width: 800,marginTop:10}}
         data={[
             { x: '2560', y: 0 },
-          { x: '2561', y: 15 },
-          { x: '2562', y: 10 },
-          
+            { x: '2561', y: 15 },
+            { x: '2562', y: 10 },
+
         ]}
         padding={{ left: 40, bottom: 20, right: 20, top: 20 }}
-        xDomain={{ min: 2559, max: 2563 }}
-        //yDomain={{ min: 0, max: 20 }}
-      >
-        <VerticalAxis tickCount={11} theme={{ labels: { formatter: (v) => v.toFixed(2) } }} />
-        <HorizontalAxis tickCount={5} theme={{labels: {
+        xDomain={{ min: 2560, max: 2563 }}
+    //yDomain={{ min: 0, max: 20 }}
+    // viewport={{ initialOrigin:{ x:20 ,y=20 } , size :{width: 15, height:15}}}
+    >
+        <VerticalAxis tickCount={5} theme={{ axis: { visible: false },ticks :{ visible:false  },  labels: { formatter: (v) => v.toFixed(2) }, grid: { stroke: { width: 0.5 } } }} />
+        <HorizontalAxis tickCount={4} theme={{
+            ticks:{visible:false},
+            labels: {
                 visible: true,
                 label: {
-                  color: '#000',
-                  fontSize: 10,
-                  fontWeight: 300,
-                  textAnchor: 'middle',
-                  opacity: 1,
-                  dx: 0,
-                  dy: -12,
-                  rotation: 0,
+                    color: '#000',
+                    fontSize: 10,
+                    fontWeight: 300,
+                    textAnchor: 'middle',
+                    opacity: 1,
+                    dx: 30,
+                    dy: -12,
+                    rotation: 0,
                 }
-              }}} />
-        
-        <Line theme={{ 
-            stroke: { color: '#ffa502', width: 5 }, 
-            scatter: { default: { width: 10, height: 10, rx: 5,dx: 0 }} ,
-            
-            }} />
-      </Chart>)
+            },
+            grid: {
+                visible: false,
+            },
+        }}
+        />
+
+        <Line theme={{
+            stroke: { color: '#91b6e1', width: 3 },
+            scatter: { default: { width: 10, height: 10, rx: 5, dx: 0, color: '#91b6e1' } },
+        }} />
+    </Chart>
+    </View>)
 
 }
 
