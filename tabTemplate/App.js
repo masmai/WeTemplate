@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Button, View, StyleSheet } from 'react-native';
+import { Button, View, StyleSheet,Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen, SettingsScreen, ProfileScreen } from './Page'
+import { HomeScreen, SettingsScreen, ProfileScreen,MountingState, ListOfExample, HookScreeen, Users, LineChartScreen } from './Page'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { DetailsScreen } from './Page/DetailsScreen';
 import SplashScreen from './Component/SplashScreen';
@@ -11,6 +11,9 @@ import Login from './Component/Login';
 import CreateAccount from './Component/CreateAccount';
 import { Chat } from './Component'
 import { RosterList } from './Component/Chat/RosterList';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { UsersHook } from './Page/UsersHook';
+
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
   return (
@@ -109,7 +112,7 @@ function HomeTabs() {
 
       }}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Settings" component={ListOfExample} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
 
@@ -122,7 +125,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   setTimeout(() => {
     setLoading(false);
-  }, 15000);
+  }, 1000);
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -132,7 +135,7 @@ export default function App() {
             //headerShown:false
             headerBackground: () => (
               <View style={[StyleSheet.absoluteFill, { backgroundColor: '#35d0ba' }]} />
-            ),
+            ),headerRight:()=>(<TouchableOpacity><Text>logout</Text></TouchableOpacity>)
           }} name="WeApp" component={HomeTabs} />
             // <Stack.Screen name="Details1" component={DetailsScreen} /> 
           )
@@ -143,6 +146,11 @@ export default function App() {
         <Stack.Screen name="RosterList" component={RosterList} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="MountingState" component={MountingState} />
+        <Stack.Screen name="HookScreen" component={HookScreeen} />
+        <Stack.Screen name="UsersHook" component={UsersHook} />
+        <Stack.Screen name="Users" component={Users} />
+        <Stack.Screen name="LineChartScreen" component={LineChartScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
